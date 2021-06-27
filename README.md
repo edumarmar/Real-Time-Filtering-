@@ -6,6 +6,7 @@ Real Time Audio Filtering Using Spectral Gating
 
 Spectral denoise is designed to remove stationary or slowly changing tonal noise by generating a profile of the background noise, then subtracting that noise when a signal’s amplitude drops below a specified threshold. It is a flexible tool that can be used to quickly achieve accurate, high-quality noise reduction.
 
+
 **How does it work? (offline)**
 
 First, let us explain how the filter works offline:
@@ -16,6 +17,7 @@ Where “stdv user” is how many standard deviations away from the noise we wan
 Then we can calculate the STFT of the signal and compare it with the thresholds previously calculated. If the signal surpasses that threshold, it will get through, if not, it will be removed as it will be considered as noise. We do this procedure for each time/frequency bin, filling a logical matrix (mask) that will be convolved with a gaussian smoothing filter. The result will be the final mask that we will apply to the signal. 
 
 This mask is applied to the signal and then an inverse STFT is performed to recover the filtered version in time.
+
 
 **Implementation in real time**
 
